@@ -42,6 +42,11 @@ RUN curl \
       && qemu-img convert -O raw /volume/cirros.img /volume/cirros.rawa \
       && rm volume/cirros.img
 
+# Add Fedora 26 cloud image
+RUN curl -L \
+      https://download.fedoraproject.org/pub/fedora/linux/releases/26/CloudImages/x86_64/images/Fedora-Cloud-Base-26-1.5.x86_64.qcow2 \
+      > /volume/fedora.qcow2
+
 ADD run-tgt.sh /
 
 EXPOSE 3260

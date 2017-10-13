@@ -43,6 +43,21 @@ spec:
       os: "cirros"
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: disk-fedora
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      os: "fedora"
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: iscsi-disk-custom
@@ -88,6 +103,22 @@ spec:
   iscsi:
     iqn: iqn.2017-01.io.kubevirt:sn.42
     lun: 3
+    targetPortal: iscsi-demo-target.default.svc.cluster.local
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: iscsi-disk-fedora
+  labels:
+    os: "fedora"
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  iscsi:
+    iqn: iqn.2017-01.io.kubevirt:sn.42
+    lun: 4
     targetPortal: iscsi-demo-target.default.svc.cluster.local
 ---
 apiVersion: v1
