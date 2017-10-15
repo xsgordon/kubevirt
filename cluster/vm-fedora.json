@@ -57,7 +57,7 @@
       },
       "memory": {
         "unit": "MB",
-        "value": 256
+        "value": 1024
       },
       "os": {
         "type": {
